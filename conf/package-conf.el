@@ -13,8 +13,11 @@
     (unless after-init-time
       (add-hook 'after-init-hook #'package--save-selected-packages))))
 
-(setq package-archives '(("gnu"   . "https://elpa.emacs-china.org/gnu/")
-                         ("melpa" . "https://elpa.emacs-china.org/melpa/")))
+;; (setq package-archives '(("gnu"   . "https://elpa.emacs-china.org/gnu/")
+;;                          ("melpa" . "https://elpa.emacs-china.org/melpa/")))
+
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 (setq package-enable-at-startup nil)
 (package-initialize)

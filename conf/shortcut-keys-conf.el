@@ -96,7 +96,7 @@
 
 ;; Configuration of Magit
 ;; 将 C-x g 设置为触发 magit-status 的快捷键
-(global-set-key (kbd "C-x g") 'magit-status)
+;; (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Configuration of Smex
 ;; 将 M-x 设置为默认使用 smex 模式
@@ -149,6 +149,46 @@ Instead of delete completely, move the file to `trash-directory'."
 
 ;; Use package `bing-dict' for translation
 (global-set-key (kbd "C-c t") 'bing-dict-brief)
+
+
+;; (defun capitalize-string-first-char (&optional string)
+;;   "Capitalize only the first character of the input STRING."
+;;   (when (and string (> (length string) 0))
+;;     (let ((first-char (substring string nil 1))
+;;           (rest-str   (substring string 1)))
+;;       (concat (capitalize first-char) rest-str))))
+(defun upcase-first-char ()
+  "Upcase only the first character of the current string."
+  (interactive)
+    (let ((bounds (find-tag-default-bounds)))
+    (cond
+      (bounds (when (< (car bounds) (point))
+	        (goto-char (car bounds)))
+              (upcase-char 1))
+      (t (error "[No symbol at point]")))))
+(global-set-key (kbd "C-c M-c") 'upcase-first-char)
+
+(defun my/downcase-char (arg)
+  "Downercasify ARG chars starting from point.  Point doesn't move."
+  (interactive "p")
+  (save-excursion
+    (downcase-region (point) (progn (forward-char arg) (point)))))
+(defun downcase-first-char ()
+  "Downcase only the first character of the current string."
+  (interactive)
+    (let ((bounds (find-tag-default-bounds)))
+    (cond
+      (bounds (when (< (car bounds) (point))
+	        (goto-char (car bounds)))
+              (my/downcase-char 1))
+      (t (error "[No symbol at point]")))))
+(global-set-key (kbd "C-c M-l") 'downcase-first-char)
+
+
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
 
 (provide 'shortcut-keys-conf)
 ;;; shortcut-keys-conf.el ends here

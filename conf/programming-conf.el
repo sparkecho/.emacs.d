@@ -42,10 +42,11 @@
   (yas-reload-all))
 
 
+;; disable flycheck auto load, as it may cause lsp fail to load project
 (use-package flycheck
   :defer t
   :diminish
-  :hook (after-init . global-flycheck-mode)
+  ;; :hook (after-init . global-flycheck-mode)
   :commands (flycheck-add-mode)
   :custom
   (flycheck-global-modes
@@ -58,6 +59,11 @@
   :commands lsp
   ;; :init
   ;; (setq lsp-keymap-prefix "C-c l")
+  :config
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/1311
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/2207
+  (add-hook 'c-mode-hook 'lsp-diagnostics-mode)
+  (add-hook 'c++-mode-hook 'lsp-diagnostics-mode)
   :custom
   (lsp-auto-guess-root nil)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
@@ -65,10 +71,12 @@
   (read-process-output-max (* 1024 1024))
   (lsp-eldoc-hook nil)
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
-  :hook ((c-mode c++-mode objc-mode python-mode java-mode
+  :hook ((c-mode c++-mode
+          objc-mode python-mode java-mode
           js-mode js2-mode) . lsp))
 
 (use-package lsp-ui
+  :after lsp-mode
   :ensure t
   :commands lsp-ui-mode
   :init
@@ -77,12 +85,37 @@
   (setq lsp-ui-peek-enable t)
   (setq lsp-ui-doc-enable nil)
   (setq lsp-ui-imenu-enable t)
-  (setq lsp-ui-flycheck-enable t)
+  ;; (setq lsp-ui-flycheck-enable t)
   (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-sideline-ignore-duplicate t))
 
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol
+  :bind (("C-c C-s" . lsp-ivy-workspace-symbol)))
+
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
 (use-package dap-mode
-  :diminish)
+  :diminish
+  :hook
+  ((c-mode c++-mode) . (lambda ()
+                         (require 'dap-cpptools)
+                         (require 'dap-lldb))))
+
+(use-package realgud
+  :ensure t
+  :init (use-package realgud-lldb :after realgud))
+;; (load-library 'realgud)
+;; (load-library 'realgud-lldb)
+
+
+
+(use-package which-key
+  :ensure t
+  :diminish
+  :config
+  (setq which-key-idle-delay 1.0)
+  (which-key-mode))
 
 (eval-after-load "eldoc"
   '(diminish 'eldoc-mode))

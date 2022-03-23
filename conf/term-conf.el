@@ -13,7 +13,7 @@
 ;;   print -P "\033AnSiTc %d"
 ;; fi
 
-(setq explicit-shell-file-name "/bin/bash")
+(setq explicit-shell-file-name "bash")
 
 (defun term-toggle-mode ()
   "Make term toggle between char-mode and line-mode."
@@ -41,6 +41,7 @@
 (defadvice term-handle-exit (after term-kill-buffer-on-exit activate)
   "Kill the buffer after a term is exited."
   (kill-buffer))
+
 
 (provide 'term-conf)
 ;;; term-conf.el ends here

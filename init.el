@@ -13,17 +13,24 @@
 (require 'appearence-conf)
 (require 'shortcut-keys-conf)
 (require 'general-conf)
-(require 'markdown-conf)
-(require 'org-conf)
 (require 'term-conf)
 
 ;; Programming
 (require 'programming-conf)
 (require 'cc-conf)
 
+;; Document
+(require 'markdown-conf)
+(require 'org-conf)
+(require 'pdf-conf)
+(require 'yaml-conf)
+
+(require 'protobuf-conf)
+;; (require 'prototxt-conf)
 ;; (require 'common-lisp-conf)
 ;; (require 'elisp-conf)
-;; (require 'python-conf)
+(require 'python-conf)
+(require 'glsl-conf)
 ;; (require 'asm-conf)
 ;; (require 'scala-conf)
 ;; (require 'auctex-conf)
@@ -44,3 +51,16 @@
 ;; (emacs-init-time)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-show-quick-access t nil nil "Customized with use-package company")
+ '(ede-project-directories '("/Users/zhuhanzhao/playground/parse_config")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
