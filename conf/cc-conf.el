@@ -17,6 +17,9 @@
 
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
+(setq-default c-basic-offset 4
+              tab-width 4)
+
 (use-package google-c-style
   :init
   ;; (add-hook 'c-mode-common-hook 'google-set-c-style)

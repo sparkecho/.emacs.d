@@ -48,6 +48,8 @@
 (menu-bar-mode   0)                     ;关闭Emacs菜单栏
 (blink-cursor-mode 0)                   ;使光标不闪烁
 (toggle-frame-maximized)                ;窗口最大化
+;(global-linum-mode  t)                  ;全局显示行号
+
 (column-number-mode t)                  ;显示列号
 (show-paren-mode    t)                  ;显示括号匹配
 
@@ -56,6 +58,8 @@
 (global-hl-line-mode 1)                 ;高亮当前行
 ;; (require 'hl-spotlight)         ;高亮当前行及附近几行
 ;; (global-hl-spotlight-mode 1)
+
+(display-time)
 
 ;; mini-buffer
 (setq echo-keystrokes .1)
