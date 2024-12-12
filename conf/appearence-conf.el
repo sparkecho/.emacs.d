@@ -7,7 +7,7 @@
 (use-package cnfonts
   :ensure t
   :defer t
-  :init (cnfonts-enable))
+  :init (cnfonts-mode 1))
 
 ;; 加载 custom theme 无需确认
 (setq custom-safe-themes t)
@@ -48,8 +48,6 @@
 (menu-bar-mode   0)                     ;关闭Emacs菜单栏
 (blink-cursor-mode 0)                   ;使光标不闪烁
 (toggle-frame-maximized)                ;窗口最大化
-
-(global-linum-mode  t)                  ;全局显示行号
 (column-number-mode t)                  ;显示列号
 (show-paren-mode    t)                  ;显示括号匹配
 
