@@ -190,5 +190,7 @@ Instead of delete completely, move the file to `trash-directory'."
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 
+(global-set-key (kbd "s-u") 'revert-buffer)
+
 (provide 'shortcut-keys-conf)
 ;;; shortcut-keys-conf.el ends here
