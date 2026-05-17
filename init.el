@@ -1,66 +1,31 @@
-;;; init.el --- initial configuration of emacs
+;;; init.el --- Main entry point for Emacs -*- lexical-binding: t; -*-
 ;;; Commentary:
+;; Keep this file thin. Load order and feature-specific configuration live in
+;; dedicated modules under `lisp/'.
+;; In terminal mode (-nw), only core editing and keybindings are loaded for
+;; fast startup.
+
 ;;; Code:
 
-;; Load Path
-(add-to-list 'load-path (expand-file-name "conf" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "plugins" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; Packages
-(require 'package-conf)
+(require 'init-package)
+(require 'init-core)
+(require 'init-completion)
+(require 'init-keys)
 
-;; Preferences
-(require 'appearence-conf)
-(require 'shortcut-keys-conf)
-(require 'general-conf)
-(require 'term-conf)
+;; GUI-only modules: theme, tools, LSP, language support, etc.
+;; Also load when running as daemon (frames are created later).
+(when (or (display-graphic-p) (daemonp))
+  (require 'init-ui)
+  (require 'init-tools)
+  (require 'init-term)
+  (require 'init-prog)
+  (require 'init-lang-cc)
+  (require 'init-lang-python)
+  (require 'init-lang-protobuf)
+  (require 'init-lang-glsl)
+  (require 'init-lang-text))
 
-;; Programming
-(require 'programming-conf)
-(require 'cc-conf)
-
-;; Document
-(require 'markdown-conf)
-(require 'org-conf)
-(require 'pdf-conf)
-(require 'yaml-conf)
-
-(require 'protobuf-conf)
-;; (require 'prototxt-conf)
-;; (require 'common-lisp-conf)
-;; (require 'elisp-conf)
-(require 'python-conf)
-(require 'glsl-conf)
-;; (require 'asm-conf)
-;; (require 'scala-conf)
-;; (require 'auctex-conf)
-;; (require 'octave-conf)
-;; (require 'smalltalk-conf)
-;; (require 'javascript-conf)
-
-;; Others
-;; (require 'auto-complete-conf)
-;; (require 'esup-conf)
-
-;; Configuration of helm
-;; Added at 2016/4/17 -- 10:36
-;; 启动时间太长，故禁止其自启动
-;; 一些设置直接写入了 helm-mode.el 中
-;; M-x helm-mode 启动 helm-mode 即可加载
-;; (require 'helm-conf)
-;; (emacs-init-time)
-
+(provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-show-quick-access t nil nil "Customized with use-package company")
- '(ede-project-directories '("/Users/zhuhanzhao/playground/parse_config")))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

@@ -3,8 +3,11 @@
 
 # Except for these files and directories:
 !.gitignore
+!early-init.el
 !init.el
-!nw.el
+!custom.el
+!lisp/
+!lisp/*
 !conf/
 !conf/*
 !plugins/
