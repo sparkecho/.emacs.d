@@ -7,6 +7,7 @@
 !init.el
 !custom.el
 !gptel-config.el.example
+!install-tools.sh
 !lisp/
 !lisp/*
 !conf/
