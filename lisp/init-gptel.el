@@ -7,13 +7,23 @@
 
 (load (expand-file-name "gptel-config" user-emacs-directory))
 
+(defvar-keymap my/gptel-prefix-map
+  :doc "Prefix keymap for gptel commands."
+  "c" #'gptel
+  "d" #'gptel-menu
+  "s" #'gptel-system-prompt)
+
 (use-package gptel
-  :bind (("C-c g" . gptel)
-         ("C-c G" . gptel-send))
+  :bind (("C-c G" . gptel-send))
+  :bind-keymap ("C-c g" . my/gptel-prefix-map)
   :custom
   (gptel-default-mode 'org-mode)
   :config
   (setq gptel-model my/gptel-model
+        gptel-directives
+        '((default . "You are a precise coding assistant. Answer in Chinese.")
+          (code-review . "Review code for bugs, regressions, and missing tests.")
+          (translator . "Translate accurately and preserve technical meaning."))
         gptel-backend (gptel-make-openai "LLM"
                         :host my/gptel-api-host
                         :protocol "http"
