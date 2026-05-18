@@ -1,0 +1,18 @@
+;;; gptel-config.el.example --- Template for gptel local config -*- lexical-binding: t; -*-
+;;; Commentary:
+;; Copy this file to gptel-config.el and fill in your values.
+;; gptel-config.el is excluded from version control.
+
+;;; Code:
+
+(defvar my/gptel-api-host "api.openai.com"
+  "API host for gptel backend.")
+
+(defvar my/gptel-api-key "your-api-key-here"
+  "API key for gptel backend.")
+
+(defvar my/gptel-model 'gpt-4o
+  "Model name for gptel backend.")
+
+(provide 'gptel-config)
+;;; gptel-config.el.example ends here

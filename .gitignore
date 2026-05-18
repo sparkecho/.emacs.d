@@ -6,6 +6,7 @@
 !early-init.el
 !init.el
 !custom.el
+!gptel-config.el.example
 !lisp/
 !lisp/*
 !conf/
