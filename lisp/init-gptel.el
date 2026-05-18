@@ -26,7 +26,8 @@
           (translator . "Translate accurately and preserve technical meaning."))
         gptel-backend (gptel-make-openai "LLM"
                         :host my/gptel-api-host
-                        :protocol "http"
+                        :protocol (if (string-match-p "^[0-9]" my/gptel-api-host)
+                                      "http" "https")
                         :stream t
                         :key my/gptel-api-key
                         :models `(,my/gptel-model))))
