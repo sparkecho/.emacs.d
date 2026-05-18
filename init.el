@@ -21,6 +21,7 @@
   (require 'init-tools)
   (require 'init-term)
   (require 'init-prog)
+  (require 'init-gptel)
   (require 'init-lang-cc)
   (require 'init-lang-python)
   (require 'init-lang-protobuf)
