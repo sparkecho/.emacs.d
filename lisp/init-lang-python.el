@@ -10,7 +10,12 @@
   (setq indent-tabs-mode nil
         tab-width 4
         python-indent-offset 4
-        fill-column 88))
+        fill-column 88)
+  ;; Use .venv python for run-python if available.
+  (when-let* ((root (locate-dominating-file default-directory ".venv"))
+              (python (expand-file-name ".venv/bin/python" root)))
+    (when (file-executable-p python)
+      (setq-local python-shell-interpreter python))))
 
 (use-package python
   :ensure nil
@@ -21,7 +26,6 @@
 
 ;; basedpyright: enhanced pyright fork for type checking and completion.
 (use-package lsp-pyright
-  :after lsp-mode
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp-deferred)))

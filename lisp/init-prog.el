@@ -42,7 +42,7 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :custom
-  (lsp-auto-guess-root nil)
+  (lsp-auto-guess-root t)
   (lsp-file-watch-threshold 2000)
   (lsp-idle-delay 0.5)
   (lsp-log-io nil)
