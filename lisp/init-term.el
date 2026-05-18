@@ -25,9 +25,9 @@
   :ensure nil
   :hook
   (term-mode . (lambda ()
-                 (term-set-escape-char ?\C-x)
                  (setq-local global-hl-line-mode nil)))
   :config
+  (term-set-escape-char ?\C-x)
   (define-key term-raw-map (kbd "M-x") #'counsel-M-x)
   (define-key term-raw-map (kbd "M-:") #'eval-expression)
   (define-key term-raw-map (kbd "C-x C-y") #'term-paste)
